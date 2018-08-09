@@ -2,7 +2,11 @@
 
 $nome = "Glauco";
 
-echo "$nome";
+echo $nome;
+
+echo "</br>";
+
+var_dump($nome);
 
 
 ?>
