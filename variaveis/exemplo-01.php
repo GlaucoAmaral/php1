@@ -4,7 +4,7 @@ $nome = "Glauco";
 
 echo $nome;
 
-echo "</br>";
+echo "<br>";
 
 var_dump($nome);
 

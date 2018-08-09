@@ -9,7 +9,7 @@ $bloqueado = false;
 
 $frutas = array("abacaxi", "laranja", "manga");
 
-echo "Printando tudo: " . " " . $frutas[0] . " " . $frutas[1] . " " . $frutas[2] . "</br>";
+echo "Printando tudo: " . " " . $frutas[0] . " " . $frutas[1] . " " . $frutas[2] . "<br>";
 
 
 $nascimento = new DateTime(); //pega a data de agora. tipo objeto

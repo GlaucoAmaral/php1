@@ -16,7 +16,7 @@ exit;//pára a execucao aqui
 
 echo $nome1;
 
-echo "<br/>"; //quebra de linha. HTML
+echo "<br>"; //quebra de linha. HTML
 
 unset($nome1); //excluir a variavel ou variveis.----
 

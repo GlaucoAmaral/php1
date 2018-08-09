@@ -14,7 +14,7 @@ function teste2(){
 }
 
 teste();
-echo "</br>";
+echo "<br>";
 teste2();
 
 
