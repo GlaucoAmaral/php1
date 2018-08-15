@@ -1,0 +1,18 @@
+class NomeClasse {
+	
+	tipoDeProtecaoDoAtributo $nomeAtributo1;
+	tipoDeProtecaoDoAtributo $nomeAtributo2;
+	tipoDeProtecaoDoAtributo $nomeAtributo3;
+
+	public NomeClasse(){ //construtor
+
+	}
+
+	public nomeDoMetodo($parametros){
+		codigo lógico
+	}
+
+
+	acesso aos atributos desta classe : $this->Atributo
+
+}
