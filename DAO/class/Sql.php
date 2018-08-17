@@ -9,11 +9,10 @@ class Sql extends PDO{//a classe é um PDO(php data object)
 		$this->conexao = new PDO("mysql:host=localhost;dbname=dbphp7", "root", "");
 	}
 
-	private function setParams($statment, $parameters = array()){
+	private function setParams($statement, $parameters = array()){
 		
 		foreach($parameters as $chave => $valor){
-			$this->setParam($statment, $chave, $valor);
-			//$this->setParam($chave, $valor);duvida
+			$this->setParam($statement, $chave, $valor);
 		}		
 	
 	}
@@ -36,15 +35,6 @@ class Sql extends PDO{//a classe é um PDO(php data object)
 		$stmt = $this->query($rawQuery,$params);
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
-
-
-
-
 }
-
-
-
-
-
 
  ?>
