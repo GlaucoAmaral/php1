@@ -32,8 +32,9 @@ class Sql extends PDO{//a classe é um PDO(php data object)
 	}
 
 	public function select($rawQuery, $params = array()) : array{
+		/*PDOStatement :: fetchAll () retorna uma matriz contendo todas as linhas restantes no conjunto de resultados. A matriz representa cada linha como uma matriz de valores de coluna ou um objeto com propriedades correspondentes a cada nome de coluna. Uma matriz vazia é retornada se houver zero resultados a serem obtidos ou FALSE na falha.*/
 		$stmt = $this->query($rawQuery,$params);
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);/////////////////////
 	}
 }
 

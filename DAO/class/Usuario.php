@@ -50,6 +50,7 @@ class Usuario {
 			$this->setDeslogin( $row["deslogin"]);
 			$this->setDessenha($row["dessenha"]);
 			$this->setDtcadastro(new DateTime($row["dtcadastro"]));
+			//echo "Dtcadastro: " . $row["dtcadastro"];//Dtcadastro: 2018-08-16 15:13:57
 		}
 
 	}
@@ -61,8 +62,52 @@ class Usuario {
 			"deslogin" => $this->getDeslogin(),
 			"dessenha" => $this->getDessenha(),
 			"dtcadastro" =>  $this->getDtcadastro()->format("d/m/Y H:i:s")
+			//só é permitido ->format se for um objeto DateTime
 		));
 	}
+
+	//lista com todos usuarios
+
+	public static function getList(){
+		//retorna um array de array. Cada linha é um array
+		$sql = new Sql();
+		return $sql->select("SELECT * FROM tb_usuarios ");
+
+	}
+
+	public static function search($login){
+		$sql = new Sql();
+
+		return $sql->select("SELECT * FROM tb_usuarios WHERE deslogin LIKE :SEARCH ORDER BY deslogin", array(
+			":SEARCH" => "%" . $login . "%"
+		));
+	}
+
+	public function login($login, $senha){
+		$sql = new Sql();
+		$resultado = $sql->select("SELECT * FROM tb_usuarios WHERE deslogin = :LOGIN AND dessenha = :SENHA", array(
+			":LOGIN" => $login,
+			":SENHA" => $senha
+		));
+
+		if(!empty($resultado)){
+			//resultado é um array de array. Se o banco retornar 1 linha, entao virá um array com 1 array dentro. Se retornar 3 linhas, irá retornar um array com 3 array dentro.
+			$linha = $resultado[0];
+			var_dump($linha['dtcadastro']);
+			$this->setIdusuario($linha["idusuario"]);
+			$this->setDeslogin($linha['deslogin']);
+			$this->setDessenha($linha['dessenha']);
+			$this->setDtcadastro(new DateTime($linha["dtcadastro"]));
+		} else {
+			throw new Exception("Login e/ou senha inválidos");
+			
+		}
+	}
+
+
+
+
+
 }
 
 
