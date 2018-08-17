@@ -21,9 +21,16 @@ $id = 1;
 $stmt->bindParam(":LOGIN", $login);//
 $stmt->bindParam(":PASSWORD", $password);//
 $stmt->bindParam(":ID", $id);
-$stmt->execute();
+//PDOStatement :: execute - Executa uma instrução preparada
+//Retorna TRUE em caso de sucesso ou FALSE em caso de falha.
+$sucesso = $stmt->execute();
 
-echo "Dados alterados com sucesso!!!";
+if($sucesso){
+	echo "Dados alterados com sucesso!!!";
+} else{
+	echo "Erro, dados nao foram alterados.";
+}
+	
 
 
  ?>
