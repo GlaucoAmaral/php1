@@ -23,6 +23,10 @@ class Sql extends PDO{//a classe é um PDO(php data object)
 	}
 
 	public function query($rawQuery, $params = array()){//esse metodo executa a query que voce quer fazer no banco de dados
+		//stmt significa comando
+		//PDO::prepare-Prepara uma instrução para execução e retorna um OBJETO de instrução
+		//Prepara uma instrução SQL para ser executada pelo método PDOStatement :: execute (). 
+		//O PARAMETRO É O QUE VOCE VAI FAZER NO BANCO
 		$stmt = $this->conexao->prepare($rawQuery);
 		$this->setParams($stmt, $params);
 		//PDOStatement :: execute - Executa uma instrução preparada

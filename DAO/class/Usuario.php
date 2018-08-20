@@ -46,12 +46,32 @@ class Usuario {
 		$resultado = $sql->select("SELECT * FROM tb_usuarios WHERE idusuario = :ID", array(":ID" => $id));
 		if(count($resultado) > 0){
 			$row = $resultado[0];
-			$this->setIdusuario($row["idusuario"]);
-			$this->setDeslogin( $row["deslogin"]);
-			$this->setDessenha($row["dessenha"]);
-			$this->setDtcadastro(new DateTime($row["dtcadastro"]));
+			$this->setData($row);
 			//echo "Dtcadastro: " . $row["dtcadastro"];//Dtcadastro: 2018-08-16 15:13:57
 		}
+
+	}
+
+
+	public function update($login, $senha){
+
+		$this->setDeslogin($login);
+		$this->setDessenha($senha);
+
+		$sql = new Sql();
+		$sql->query("UPDATE tb_usuarios SET deslogin = :LOGIN, dessenha = :SENHA WHERE idusuario = :ID", array(
+			":LOGIN" => $this->getDeslogin(),
+			":SENHA" => $this->getDessenha(),
+			":ID" => $this->getIdusuario()
+		 ));
+		
+	}
+
+
+
+	public function __construct($login = "", $senha=""){
+		$this->setDeslogin($login);
+		$this->setDessenha($senha);
 
 	}
 
@@ -93,18 +113,37 @@ class Usuario {
 		if(!empty($resultado)){
 			//resultado é um array de array. Se o banco retornar 1 linha, entao virá um array com 1 array dentro. Se retornar 3 linhas, irá retornar um array com 3 array dentro.
 			$linha = $resultado[0];
-			var_dump($linha['dtcadastro']);
-			$this->setIdusuario($linha["idusuario"]);
-			$this->setDeslogin($linha['deslogin']);
-			$this->setDessenha($linha['dessenha']);
-			$this->setDtcadastro(new DateTime($linha["dtcadastro"]));
+			//var_dump($linha['dtcadastro']);
+			//echo "Dtcadastro: " . $row["dtcadastro"];//string(22): 2018-08-16 15:13:57
+			$this->setData($linha);
 		} else {
 			throw new Exception("Login e/ou senha inválidos");
 			
 		}
 	}
 
+	public function setData($data){
+		$this->setIdusuario($data["idusuario"]);
+		$this->setDeslogin($data['deslogin']);
+		$this->setDessenha($data['dessenha']);
+		$this->setDtcadastro(new DateTime($data["dtcadastro"]));
+	}
 
+
+	public function insert(){
+		$sql = new Sql();
+
+		$resultado = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)",array(
+			':LOGIN'=>$this->getDeslogin(),
+			':PASSWORD'=>$this->getDessenha()
+		));
+
+		//var_dump($resultado);
+
+		if(!empty($resultado)){
+			$this->setData($resultado[0]);
+		}
+	}
 
 
 

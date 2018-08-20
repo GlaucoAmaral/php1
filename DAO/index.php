@@ -31,8 +31,16 @@ echo json_encode($usuarios);
 //$usuario->login("JOAO", "1233456789");
 //echo $usuario;
 
-$sql = new Sql();
-$sql->select("SELECT * FROM tb_usuarios");
+//Criando um novo usuario
+//$aluno = new Usuario("GlaucoAmaral", "102030");
+//$aluno->insert();
+//echo $aluno;
 
+
+//Atualizando uma pessoa.
+$usuario = new Usuario();//crio usuario
+$usuario->loadbyID(6);//carrego ele
+$usuario->update("professor", "senhaProfessor");
+echo $usuario;
 
  ?>
