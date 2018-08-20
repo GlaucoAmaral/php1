@@ -16,7 +16,6 @@ echo json_encode($usuarios);
 
 
 //Carrega uma Lista de Usuarios
-//o fato dele ser static é melhor pois nao preciso instanciar objeto. Ele pertence a classe
 //$lista = Usuario::getList();
 //var_dump($lista);
 //echo json_encode($lista);
@@ -37,10 +36,15 @@ echo json_encode($usuarios);
 //echo $aluno;
 
 
-//Atualizando uma pessoa.
-$usuario = new Usuario();//crio usuario
-$usuario->loadbyID(6);//carrego ele
-$usuario->update("professor", "senhaProfessor");
-echo $usuario;
+//Atualizando uma pessoa
+//$usuario = new Usuario();//crio usuario
+//$usuario->loadbyID(6);//carrego ele
+//$usuario->update("professor", "senhaProfessor");
+//echo $usuario;
 
+//deletando uma pessoa
+$usuario = new Usuario();
+$usuario->loadbyID(7);
+$usuario->delete();
+echo $usuario;
  ?>

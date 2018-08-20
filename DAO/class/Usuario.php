@@ -87,7 +87,7 @@ class Usuario {
 	}
 
 	//lista com todos usuarios
-
+	//o fato dele ser static é melhor pois nao preciso instanciar objeto. Ele pertence a classe
 	public static function getList(){
 		//retorna um array de array. Cada linha é um array
 		$sql = new Sql();
@@ -143,6 +143,21 @@ class Usuario {
 		if(!empty($resultado)){
 			$this->setData($resultado[0]);
 		}
+	}
+
+	public function delete(){
+		$sql = new Sql();
+
+		$sql->query("DELETE FROM tb_usuarios WHERE idusuario = :ID", array(
+			":ID" => $this->getIdusuario()
+		));
+		//apago no banco e ja apago no objeto
+		$this->setIdusuario(0);
+		$this->setDeslogin("");
+		$this->setDessenha("");
+		$this->setDtcadastro(new DateTime());
+
+
 	}
 
 
